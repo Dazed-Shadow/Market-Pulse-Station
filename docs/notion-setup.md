@@ -2,7 +2,8 @@
 
 This project connects to Notion via an **internal integration** and project-owned
 Python scripts — no OAuth, no Claude connector. Token lives in `.env`; scripts live
-in `scripts/`. This mirrors the HZ project's `scripts/notion_client.py` pattern.
+in `scripts/`. This mirrors HZ's `scripts/notion_client.py` pattern (we use the
+filename `notion_api.py` here to avoid shadowing the PyPI `notion-client` package).
 
 ## Structure
 
@@ -72,7 +73,7 @@ and skips it.
 |---|---|
 | `.env` | No — gitignored. Contains the real token. |
 | `.env.example` | Yes — placeholder template. |
-| `scripts/notion_client.py` | Yes — shared API wrapper. |
+| `scripts/notion_api.py` | Yes — shared API wrapper. |
 | `scripts/notion_seed.py` | Yes — one-time DB creator. |
 
 ## Troubleshooting

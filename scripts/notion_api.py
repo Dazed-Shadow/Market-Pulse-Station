@@ -8,8 +8,13 @@ Pattern C: internal integration token in .env — no OAuth, no MCP connector.
 Mirrors the style of HZ/scripts/notion_client.py (stdlib urllib, no extra deps
 beyond notion-client for the Client object and python-dotenv for .env loading).
 
+Module-name note: this file is `notion_api.py` (not `notion_client.py`) so it
+doesn't shadow the PyPI `notion-client` package. Running `python scripts/...`
+puts `scripts/` on `sys.path[0]`; a local `notion_client.py` would then
+intercept the SDK import below and cause a circular import.
+
 Usage:
-    from scripts.notion_client import get_client, get_landing_page_id
+    from scripts.notion_api import get_client, get_landing_page_id
 
     client = get_client()
     page_id = get_landing_page_id()

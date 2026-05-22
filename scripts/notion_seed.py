@@ -21,11 +21,11 @@ Before running:
 import sys
 from pathlib import Path
 
-# Ensure the project root is on the path so `from scripts.notion_client` works
+# Ensure the project root is on the path so `from scripts.notion_api` works
 # whether you run this as `python scripts/notion_seed.py` or `python -m scripts.notion_seed`.
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from scripts.notion_client import get_client, get_landing_page_id
+from scripts.notion_api import get_client, get_landing_page_id
 
 
 # ── Database schemas ───────────────────────────────────────────────────────────
