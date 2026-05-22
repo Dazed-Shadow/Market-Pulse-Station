@@ -36,23 +36,23 @@ its own; don't refactor earlier phases into the final architecture until Phase 5
 - **Style:** small, readable files; comments that explain the *why* and the
   data-science parallel where one exists (e.g. "rolling avg ≈ SMA-10").
 
-## Notion command center (Pattern B — see docs/notion-setup.md)
+## Notion command center (Pattern C — see docs/notion-setup.md)
 
 This project mirrors its decisions/state to Notion so context survives between
-chat sessions. The landing-page URL goes in the placeholder below once the user
-creates it.
+chat sessions. Connection is via an **internal integration** token in `.env` and
+project-owned Python scripts in `scripts/` — not the Claude OAuth connector and
+not a local MCP server. This mirrors the HZ project's setup exactly.
 
-**Notion landing page:** `<PASTE_NOTION_LANDING_PAGE_URL_HERE>`
+**Notion landing page:** `https://www.notion.so/LANDING-PAGE-3683d60a7be9804995a4d4f08814adc5`
 
-Structure to create under that landing page:
+Structure created by `python scripts/notion_seed.py`:
 - **Decisions DB** — Name (title), Date, Status, Area, Notes
 - **Session Log** — Name, Date, Phase, Agent, Outcome
 - **Sprint Tracker** — Task, Status, Sprint, Owner, Due
 
-As long as the Claude Notion integration has access to the landing page, it
-inherits access to the databases beneath it. Verify the connector is on the
-**correct workspace** (not a demo workspace) before relying on it — searching for
-a uniquely-named real page is the fastest check.
+The integration must be added as a **Connection** on the landing page (page
+`···` menu → Connections) before the scripts will work. See `docs/notion-setup.md`
+for the full walkthrough.
 
 ## What to do first
 
@@ -60,9 +60,11 @@ a uniquely-named real page is the fastest check.
    first commit, and prints the steps to add a GitHub remote — it will **not** push
    or create anything on GitHub without the user doing it themselves).
 2. Confirm `.gitignore` covers `firmware/secrets.py`.
-3. Ask the user for the Notion landing-page URL and the display driver chip; fill
-   both into the placeholders.
-4. Then wait for hardware to begin Phase 1.
+3. Create the Notion internal integration at https://www.notion.so/profile/integrations,
+   drop the token in `.env` as `NOTION_TOKEN`, add the integration as a Connection
+   on the landing page (page `···` → Connections), then run `python scripts/notion_seed.py`.
+4. Confirm the display driver chip (ILI9341 or ST7796) from the product listing.
+5. Then wait for hardware to begin Phase 1.
 
 ## Guardrails
 

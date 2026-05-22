@@ -2,6 +2,7 @@
 firmware/secrets.py
 .env
 .env.*
+!.env.example
 
 # Python / MicroPython tooling
 __pycache__/
