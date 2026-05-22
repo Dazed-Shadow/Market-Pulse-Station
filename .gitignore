@@ -1,0 +1,19 @@
+# Secrets — never commit (Integration Playbook, Pattern A)
+firmware/secrets.py
+.env
+.env.*
+
+# Python / MicroPython tooling
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
